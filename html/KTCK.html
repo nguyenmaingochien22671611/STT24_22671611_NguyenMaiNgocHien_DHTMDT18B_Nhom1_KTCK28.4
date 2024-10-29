@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THONG TIN CA NHAN</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <style>
+        * {
+            margin: 0 auto;
+            padding: 0;
+        }
+        
+        .navbar {
+            margin: 0;
+        }
+        
+        .from-control {
+            height: fit-content!important;
+        }
+        
+        .modal-body {
+            margin: 0;
+        }
+    </style>
+    <script>
+        $(document).ready(function() {
+            //cau a
+
+            let sttCounter = 2;
+
+            $('#btnDK').on('click', function() {
+                $('#myModal').modal('show');
+            });
+
+            //cau b
+            $('#txtMa').on('blur', function() {
+                const ma = $(this).val();
+                const regexMa = /^K16-\d{9}$/;
+                if (!regexMa.text(ma)) {
+                    $('#tbMa').text('Ma khong hop le, dung mau: K16-xxxxxxxxx');
+                } else {
+                    $('#tbMa').text('*');
+                }
+            });
+
+            //cau c
+            $('#txtHT').on('blur', function() {
+                const ten = $(this).val();
+                const regexTen = /[A-Z][a-z]*([][A-Z][a-z]*)/ + $;
+                if (!regexTen.text(ten)) {
+                    $('#tbTen').text('Ten khong hop le');
+                } else {
+                    $('#tbTen').text('*');
+                }
+            });
+
+            //cau d
+            $('#txtDV').on('blur', function() {
+                const lop = $(this).val();
+                const regexLop = /^[A-Z0-9]{11}$/;
+                if (!regexLop.text(lop)) {
+                    $('#tbLop').text('Lop khong hop le');
+                } else {
+                    $('#tbLop').text('*');
+                }
+            });
+
+            //cau e
+            $('#txtDD').on('blur', function() {
+                const ngayThamGia = new Date($(this).val());
+                const ngayHienTai = new Date;
+                ngayHienTai.setDate(ngayHienTai.getDate() + 30);
+                if (ngayThamGia <= ngayHienTai) {
+                    $('#tbNgay').text('Ngay tham gia phai sau ngay hien tai 30 ngay');
+                } else {
+                    $('#tbNgay').text('*');
+                }
+            });
+
+            //cau f
+            $('#txtTel').on('blur', function() {
+                const tel = $(this).val();
+                const regexTel = /^0\d{3}-\d{3}-\d{3}$/;
+                if (!regexTel.text(tel)) {
+                    $('#tbTel').text('SDT khong hop le');
+                } else {
+                    $('#tbTel').text('*');
+                }
+            });
+
+            //cau g
+            $('#txtDC').on('blur', function() {
+                    const email = $(this).val();
+                    const regexEmail = /^[a-zA-Z0-9._%+-]+@iuh\.edu\.vn$/;
+                    if (!regexEmail.text(email)) {
+                        $('#tbEmail').text('Email khong hop le');
+                    } else {
+                        $('#tbEmail').text('*');
+                    }
+                )
+            };
+
+            //cau h
+            $('$btnSave').click(function() {
+                if (
+                    $("#tbMa").val() !== "" &&
+                    $("#tbTen").val() !== "" &&
+                    $("#tbLop").val() !== "" &&
+                    $("#tbNgay").val() !== "" &&
+                    $("#tbTel").val() !== "" &&
+                    $("#tbEmail").val() !== ""
+                ) {
+                    const them = <
+                        tr >
+                        <
+                        td > $ {
+                            sttCounter++
+                        } < /td> <
+                    td > $ {
+                        $("#txtMa").val()
+                    } < /td> <
+                    td > $ {
+                        $("#txtHT").val()
+                    } < /td> <
+                    td > $ {
+                        $("#txtDV").val()
+                    } < /td> <
+                    td > $ {
+                        $("#txtDD").val()
+                    } < /td> <
+                    td > $ {
+                        $("#txtTel").val()
+                    } < /td> <
+                    td > $ {
+                        $("#txtDC").val()
+                    } < /td> < /
+                    tr > ;
+                    $("tbDanhsach").append("them");
+                    $("#myModal").modal("hide");
+                } else {
+                    alert('Vui long nhap day du va dung cac truong thong tin!');
+                }
+            });
+        })
+    </script>
+
+</head>
+
+<body>
+    <div class="container border">
+        <div class="row">
+            <div class="col-12">
+                <img src="../img/HEADER.PNG" alt="" width="100%">
+            </div>
+        </div>
+        <div class="row">
+            <nav class="navbar">
+                <ul class="nav nav-navbar navbar-expand">
+                    <li class="nav-item"><a href="#" class="nav-link">Dang nhap</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" id="btnDK">Dang ky</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="row">
+            <h1 style="text-align: center;">DANH SACH THAM GIA DOI ROBOCON KHOA CNTT</h1>
+            <table class="table-bordered table-light table-primary table-hover table table-striped" id="tbDanhSach">
+                <tr>
+                    <th>STT</th>
+                    <th>Ma thanh vien</th>
+                    <th>Ho ten</th>
+                    <th>Lop</th>
+                    <th>Ngay tham gia</th>
+                    <th>Dien thoai</th>
+                    <th>Email</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>K16-123456789</td>
+                    <td>Tran Thanh Kha</td>
+                    <td>DHKTPM16ATT</td>
+                    <td>22/02/2022</td>
+                    <td>0909-123-123</td>
+                    <td>thanhkha@iuh.edu.vn</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1>THONG TIN CA NHAN</h1>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <from action="" class="from-control">
+                            <div class="row from-group">
+                                <div class="col-4 col-sm-4">
+                                    <label for="">Ma thanh vien</label>
+                                </div>
+                                <div class="col-8 col-sm-8">
+                                    <input type="text" class="from-control" placeholder="Ma: K16-123456789" id="txtma">
+                                </div>
+                                <div class="col-4 col-sm-4"></div>
+                                <div class="col-8 col-sm-8">
+                                    <span id="tbMa">*</span>
+                                </div>
+                                <div class="row from-group p-1">
+                                    <div class="col-4 col-sm-4">
+                                        <label for="">Ho ten:</label>
+                                    </div>
+                                    <div class="col-8 col-sm-8">
+                                        <input type="text" class="from-control" placeholder="Ho ten: Tran Aanh Dung">
+                                    </div>
+                                    <div class="col-4 col-sm-4"></div>
+                                    <div class="col-8 col-sm-8">
+                                        <span id="tbTen">*</span>
+                                    </div>
+                                    <div class="row from-group">
+                                        <div class="col-4 col-sm-4"></div>
+                                        <label for="">Lop:</label>
+                                    </div>
+                                    <div class="col-8 col-sm-8">
+                                        <input type="text" name="txtDV" class="from-control" id="txtDV" placeholder="Lop: DHKTPM16ATT">
+                                    </div>
+                                    <div class="col-4 col-sm-4"></div>
+                                    <div class="col-8 col-sm-8">
+                                        <span id="tbTen">*</span>
+                                    </div>
+                                </div>
+                                <div class="row from-group">
+                                    <div class="col-4 col-sm-4">
+                                        <label for="">Ngay tham gia:</label>
+                                    </div>
+                                    <div class="col-8 col-sm-8">
+                                        <input type="text" name="txtDD" class="txtDD from-control" id="txtDD" placeholder="mm/dd/yy">
+                                    </div>
+                                </div>
+                            </div>
+                        </from>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
